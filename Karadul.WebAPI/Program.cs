@@ -1,4 +1,7 @@
 
+using Karadul.Data.Contexts;
+using Microsoft.EntityFrameworkCore;
+
 namespace Karadul.WebAPI
 {
     public class Program
@@ -6,6 +9,8 @@ namespace Karadul.WebAPI
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<KaradulDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("sqlConnection")));
 
             // Add services to the container.
 

@@ -15,4 +15,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Karadul.Data\Karadul.Data.csproj" />
+  </ItemGroup>
+
 </Project>
