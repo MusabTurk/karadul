@@ -14,10 +14,10 @@ namespace Karadul.Data.Repository
         private KaradulDbContext _context;
         private DbSet<T> _table;
 
-        public GenericRepository(KaradulDbContext context, DbSet<T> table)
+        public GenericRepository(KaradulDbContext context)
         {
             _context = context;
-            _table = table;
+            _table = _context.Set<T>();
         }
 
 
