@@ -12,6 +12,7 @@ namespace Karadul.Data.Contexts
     {
         public KaradulDbContext(DbContextOptions options) : base(options) { }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Admin> Admins { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
