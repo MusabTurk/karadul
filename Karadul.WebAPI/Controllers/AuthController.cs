@@ -1,5 +1,7 @@
-﻿using Karadul.Data.Entities;
+﻿using AutoMapper;
+using Karadul.Data.Entities;
 using Karadul.Services.Services.AuthServices;
+using Karadul.WebAPI.Models.AdminModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,21 +12,23 @@ namespace Karadul.WebAPI.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
-
-        public AuthController(IAuthService authService)
+        private readonly IMapper _mapper;
+        public AuthController(IAuthService authService, IMapper mapper)
         {
             _authService = authService;
+            _mapper = mapper;
         }
 
         [HttpPost]
-        public async Task<IActionResult> AdminLogin(Admin admin)
+        public async Task<IActionResult> AdminLogin(LoginModel loginModel)
         {
-            var adminLogin = await _authService.AdminLogin(admin);
-            if (adminLogin == false)
+            var adminMap = _mapper.Map<Admin>(loginModel);
+            var adminLogin = await _authService.AdminLogin(adminMap);
+            if (adminLogin == null)
             {
                 return BadRequest();
             }
-            return Ok();
+            return Ok(adminLogin.AccessToken);
         }
     }
 }

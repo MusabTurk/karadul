@@ -9,6 +9,7 @@ namespace Karadul.Data.Repository.AuthRepositories
 {
     public interface IAuthRepository
     {
-        public Task<bool> AdminLogin(Admin admin);
+        public Task<Admin> AdminLogin(Admin admin);
+        public Task SaveAsync();
     }
 }

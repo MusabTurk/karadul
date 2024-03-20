@@ -9,6 +9,10 @@ namespace Karadul.Data.Repository.ProductRepositories
 {
     public interface IProductRepository : IGenericRepository<Product>
     {
+        Task<IEnumerable<Product>> GetWomansProduct();
+        Task<IEnumerable<Product>> GetMensProduct();
+        Task<Product> CreateAsync(Product entity, int categoryId);
+        Task<Product> UpdateAsync(Product entity, int categoryId);
 
     }
 }

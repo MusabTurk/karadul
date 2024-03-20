@@ -1,4 +1,4 @@
-﻿using Karadul.Data.Contexts;
+﻿using Karadul.Data.DbContexts;
 using Karadul.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,14 +17,22 @@ namespace Karadul.Data.Repository.AuthRepositories
         {
             _context = context;
         }
-        public async Task<bool> AdminLogin(Admin admin)
+
+        public async Task<Admin> AdminLogin(Admin admin)
         {
-            var adminExist = await _context .Admins .FirstOrDefaultAsync( x => x.Email == admin.Email && x.Password == admin.Password );
-            if (adminExist == null) 
-            { 
-            return false;
+            var adminExist = await _context
+                .Admins.Include(x => x.Role)
+                .FirstOrDefaultAsync(x => x.Email == admin.Email && x.Password == admin.Password);
+            if (adminExist == null)
+            {
+                return null;
             }
-            return true;    
+            return adminExist;
+        }
+
+        public async Task SaveAsync()
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }
