@@ -1,0 +1,193 @@
+﻿@model List<ProductDto>
+@{
+    Layout = "_Layout";
+}
+
+
+
+<!-- Product Section Begin -->
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            @foreach (var product in Model.Take(8))
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="product__item">
+                        <div class="product__item__pic">
+                            <img src="data:image/jpeg;base64,@Convert.ToBase64String(product.ProductPicture)" alt="">
+
+                            <ul class="product__hover">
+                                <li><a href="data:image/jpeg;base64,@Convert.ToBase64String(product.ProductPicture)" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">@product.Name</a></h6>
+                            <div class="product__price">@product.Price ₺</div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!-- Product Section End -->
+<!-- Banner Section Begin -->
+<!-- Trend Section Begin -->
+<section class="trend spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <!-- Hot Trend -->
+                <div class="trend__content">
+                    <div class="section-title">
+                        <h4>Trendler</h4>
+                    </div>
+                    @foreach (var product in Model.Where(p => p.HotTrend))
+                    {
+                        <div class="trend__item">
+                            <div class="trend__item__pic">
+                                <img src="data:image/jpeg;base64,@Convert.ToBase64String(product.ProductPicture)" alt="">
+                            </div>
+                            <div class="trend__item__text">
+                                <h6>@product.Name</h6>
+                                <div class="rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div class="product__price">@product.Price ₺</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <!-- Best Seller -->
+                <div class="trend__content">
+                    <div class="section-title">
+                        <h4>En Çok Satanlar</h4>
+                    </div>
+                    @foreach (var product in Model.Where(p => p.BestSeller))
+                    {
+                        <div class="trend__item">
+                            <div class="trend__item__pic">
+                                <img src="data:image/jpeg;base64,@Convert.ToBase64String(product.ProductPicture)" alt="">
+                            </div>
+                            <div class="trend__item__text">
+                                <h6>@product.Name</h6>
+                                <div class="rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div class="product__price">@product.Price ₺</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <!-- Feature -->
+                <div class="trend__content">
+                    <div class="section-title">
+                        <h4>Gelecek Ürünler</h4>
+                    </div>
+                    @foreach (var product in Model.Where(p => p.Feature))
+                    {
+                        <div class="trend__item">
+                            <div class="trend__item__pic">
+                                <img src="data:image/jpeg;base64,@Convert.ToBase64String(product.ProductPicture)" alt="">
+                            </div>
+                            <div class="trend__item__text">
+                                <h6>@product.Name</h6>
+                                <div class="rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div class="product__price">@product.Price ₺</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trend Section End -->
+<!-- Discount Section Begin -->
+<section class="discount">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 p-0">
+                <div class="discount__pic">
+                    <img src="~/ashion-master/img/discount.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 p-0 ">
+
+                <div class="discount__text p-md-5">
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+
+                    <div class="discount__text__title">
+                        <h5>İNDİRİM</h5>
+                        <h3>Yaz 2024</h3>
+                        <br />
+                        <h5>KAÇIRMAYIN!!!</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Discount Section End -->
+<!-- Services Section Begin -->
+<section class="services spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="services__item">
+                    <i class="fa fa-car"></i>
+                    <h6>Ücretsiz kargo</h6>
+                    <p>100₺ üzeri tüm siparişler için</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="services__item">
+                    <i class="fa fa-money"></i>
+                    <h6>Para iade garantisi</h6>
+                    <p>Tüm sorunlar için</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="services__item">
+                    <i class="fa fa-support"></i>
+                    <h6>Çevrimiçi Destek 7/24</h6>
+                    <p>Özel destek</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="services__item">
+                    <i class="fa fa-headphones"></i>
+                    <h6>Ödeme Güvenli</h6>
+                    <p>100% güvenli ödeme</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Services Section End -->
+<!-- Instagram End -->

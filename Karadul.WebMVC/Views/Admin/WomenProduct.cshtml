@@ -1,0 +1,51 @@
+﻿@model List<ProductDto>
+@{
+    ViewData["Title"] = "WomenProduct";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="mb-4">Kadın Ürünleri</h1>
+
+<div class="container">
+    <div class="row mb-4">
+        <div class="col text-end">
+            <a asp-controller="Product" asp-action="AddProduct" class="btn btn-outline-primary"><i class="fas fa-plus"></i> Yeni Ürün Ekle</a>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Ürün Adı</th>
+                <th scope="col">Ürün Fiyatı</th>
+                <th scope="col">Trend Mi ?</th>
+                <th scope="col">En Çok Satan Mı ?</th>
+                <th scope="col">Gelecek Ürün Mü ?</th>
+                <th scope="col">İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model.OrderBy(x => x.Name))
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>@product.HotTrend</td>
+                    <td>@product.BestSeller</td>
+                    <td>@product.Feature</td>
+                    <td>
+                        <a asp-controller="Product" asp-action="UpdateProduct" asp-route-id="@product.Id" title="Düzenle">
+                            <i class="btn btn-primary typcn typcn-edit"></i>
+                        </a>
+                        <a asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@product.Id" onclick="return confirm('Silmek istediğinize emin misiniz?')" title="Sil">
+                            <i class="btn btn-danger typcn typcn-flash-outline"></i>
+                        </a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

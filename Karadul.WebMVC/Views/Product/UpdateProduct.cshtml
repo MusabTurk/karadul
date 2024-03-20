@@ -1,0 +1,102 @@
+﻿@model UpdateProductDto
+
+@{
+    ViewData["Title"] = "UpdateProduct";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+
+<div class="row py-3" style="margin-top: 50px; margin-left: 50px;">
+    <div class="col-md-6">
+        <form asp-action="UpdateProduct" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group py-2">
+                <label asp-for="Name" class="control-label"><h5>Ürün Adı</h5></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group py-2">
+                <label asp-for="Price" class="control-label"><h5>Ürün Fiyatı</h5></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group py-2">
+                <label asp-for="Description" class="control-label"><h5>Ürün Açıklaması</h5></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group py-2">
+                <label asp-for="HotTrend" class="control-label"><h5>Trend Mi ?</h5></label>
+                <select asp-for="HotTrend" class="form-control">
+                    <option value="True">Evet</option>
+                    <option value="False">Hayır</option>
+                </select>
+                <span asp-validation-for="HotTrend" class="text-danger"></span>
+            </div>
+            <div class="form-group py-2">
+                <label asp-for="BestSeller" class="control-label"><h5>En Çok Satan Mı ?</h5></label>
+                <select asp-for="BestSeller" class="form-control">
+                    <option value="True">Evet</option>
+                    <option value="False">Hayır</option>
+                </select>
+                <span asp-validation-for="BestSeller" class="text-danger"></span>
+            </div>
+            <div class="form-group py-2">
+                <label asp-for="Feature" class="control-label"><h5>Gelecek Ürün Mü ?</h5></label>
+                <select asp-for="Feature" class="form-control">
+                    <option value="True">Evet</option>
+                    <option value="False">Hayır</option>
+                </select>
+                <span asp-validation-for="Feature" class="text-danger"></span>
+            </div>
+            <div class="form-group py-2">
+                <label asp-for="CategoryId" class="control-label"><h5>Kategori</h5></label>
+                <select asp-for="CategoryId" class="form-control">
+                    <option value="1">Kadın</option>
+                    <option value="2">Erkek</option>
+                    <option value="3">Çocuk</option>
+                    <option value="4">Takı</option>
+                    <option value="5">Çanta</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group py-2">
+                <label asp-for="File" class="control-label"><h5>Ürün Fotoğrafı</h5></label>
+                <div class="custom-file btn-light">
+                    <input asp-for="File" class="custom-file-input" id="customFile" onchange="updateImagePreview(this)" />
+                    <label class="custom-file-label" for="customFile">Dosya Seç</label>
+                </div>
+                <span asp-validation-for="File" class="text-danger"></span>
+            </div>
+            <div class="form-group py-2">
+                <img id="imgPreview" src="#" alt="Ürün Fotoğrafı" style="max-width: 100%; height: auto; display: none;" />
+            </div>
+            <div class="form-group py-2">
+                <input type="submit" value="Güncelle" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function updateImagePreview(input) {
+        var imgPreview = document.getElementById('imgPreview');
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                imgPreview.src = e.target.result;
+                imgPreview.style.display = 'block';
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+

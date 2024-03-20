@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 
 namespace Karadul.Data.Entities
 {
-    public class Product: BaseEntity
+    public class Product : BaseEntity
     {
-        
         public string Name { get; set; }
 
         public decimal Price { get; set; }
 
         public string Description { get; set; }
 
-
+        public byte[] ProductPicture { get; set; }
+        public bool HotTrend { get; set; }
+        public bool BestSeller { get; set; }
+        public bool Feature { get; set; }
 
     }
 }
